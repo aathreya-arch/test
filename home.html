@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Eagle — Learn. Experience. Grow.</title>
+  <meta name="description" content="Social Eagle is an ecosystem for serious learners — built on systems, integrity, and applied practice. Learn. Experience. Grow." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body class="home">
+
+  <!-- Wing-shadow sweep overlay (animated by JS) -->
+  <div class="wing-shadow" aria-hidden="true" data-wing-shadow>
+    <svg viewBox="0 0 1600 400" preserveAspectRatio="none">
+      <defs>
+        <filter id="ws-blur" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="18"/>
+        </filter>
+      </defs>
+      <g filter="url(#ws-blur)" opacity="0.45">
+        <path fill="black" d="M-200 200
+          C 100 80, 400 60, 700 130
+          C 900 170, 1100 180, 1300 150
+          C 1500 130, 1700 110, 1900 140
+          L 1900 400 L -200 400 Z"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ─── Nav ─────────────────────────────────────── -->
+  <nav class="nav nav--home" data-nav>
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <svg class="nav__mark" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <use href="#eagle-mark"/>
+        </svg>
+        Social Eagle
+      </a>
+      <div class="nav__right">
+        <button class="sound-toggle" type="button" data-sound aria-pressed="false" aria-label="Toggle ambient soundscape">
+          <svg class="sound-icon sound-icon--off" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.59 3l2.7-2.7-1.41-1.41L15.17 10.6l-2.7-2.71-1.41 1.41L13.76 12l-2.7 2.71 1.41 1.41 2.7-2.71 2.71 2.71 1.41-1.41z"/>
+          </svg>
+          <svg class="sound-icon sound-icon--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm11.5 3a4.5 4.5 0 00-2.5-4.03v8.05A4.5 4.5 0 0014.5 12zM12 3.23v2.06a7 7 0 010 13.42v2.06a9 9 0 000-17.54z"/>
+          </svg>
+          <span class="sound-toggle__label">Wind</span>
+        </button>
+        <ul class="nav__links">
+          <li><a href="index.html">About</a></li>
+          <li><a href="index.html#philosophy">Philosophy</a></li>
+          <li><a href="#start" class="nav__cta">Start Here</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 1 — THE NEST  (parallax hero)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-1" aria-labelledby="hero-title">
+      <!-- 4 parallax layers, stacked back→front -->
+      <div class="parallax" aria-hidden="true">
+        <!-- Layer 1: distant sky / clouds (slowest) -->
+        <svg class="px-layer px-clouds" data-px="0.15" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+          <use href="#clouds"/>
+        </svg>
+        <!-- Layer 2: distant mountain ridge -->
+        <svg class="px-layer px-ridge-far" data-px="0.30" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+          <use href="#ridge-far"/>
+        </svg>
+        <!-- Layer 3: closer mountains -->
+        <svg class="px-layer px-ridge-near" data-px="0.55" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+          <use href="#ridge-near"/>
+        </svg>
+        <!-- Layer 4: granite ground texture (fastest) -->
+        <div class="px-layer px-ground" data-px="0.90"></div>
+      </div>
+
+      <!-- Wings: translate up and fade as user scrolls (Takeoff) -->
+      <div class="wings" aria-hidden="true" data-wings>
+        <svg class="wings__svg wings__left"  viewBox="0 0 600 800" preserveAspectRatio="xMinYMid slice">
+          <use href="#wing"/>
+        </svg>
+        <svg class="wings__svg wings__right" viewBox="0 0 600 800" preserveAspectRatio="xMaxYMid slice">
+          <use href="#wing" transform="scale(-1,1) translate(-600,0)"/>
+        </svg>
+      </div>
+
+      <div class="container level-1__inner">
+        <span class="eyebrow eyebrow--light">An ecosystem for serious learners</span>
+        <h1 id="hero-title" class="display">
+          <span class="display__line" data-reveal-word>Learn.</span>
+          <span class="display__line" data-reveal-word>Experience.</span>
+          <span class="display__line display__line--accent" data-reveal-word>Grow.</span>
+        </h1>
+        <p class="lead lead--light">
+          Social Eagle is built on systems, not slogans — a place to learn deliberately,
+          practise consistently, and grow with people who take the work seriously.
+        </p>
+        <div class="actions">
+          <a href="#start" class="btn btn--primary btn--talon">
+            <span class="btn__label">Start Here</span>
+          </a>
+          <a href="#paths" class="btn btn--ghost btn--talon">
+            <span class="btn__label">See the Paths</span>
+          </a>
+        </div>
+        <div class="scroll-cue" aria-hidden="true">
+          <span>Take off</span>
+          <svg width="14" height="20" viewBox="0 0 14 20" fill="none">
+            <path d="M7 1v15m0 0l-5-5m5 5l5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 2 — THE ASCENT  (thermal currents)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-2" aria-labelledby="ascent-title">
+      <!-- Heat shimmer / vertical streaks behind stats -->
+      <div class="thermals" aria-hidden="true" data-thermals>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="container container--narrow">
+        <span class="eyebrow eyebrow--accent">The Evidence</span>
+        <h2 id="ascent-title" class="title">Built quietly. Measured publicly.</h2>
+        <p class="body body--light">
+          We don't lead with noise. We let the work — and its recognition — speak.
+        </p>
+      </div>
+
+      <div class="container">
+        <ul class="stats" data-stats>
+          <li class="stat" data-thermal>
+            <span class="stat__num">8</span>
+            <span class="stat__label">National recognitions &amp; awards</span>
+          </li>
+          <li class="stat" data-thermal>
+            <span class="stat__num">5<span class="stat__num-suffix">+ yrs</span></span>
+            <span class="stat__label">Continuous industry recognition (2021–2026)</span>
+          </li>
+          <li class="stat" data-thermal>
+            <span class="stat__num">10</span>
+            <span class="stat__label">Top Social Media Startups — Silicon India</span>
+          </li>
+          <li class="stat" data-thermal>
+            <span class="stat__num">1</span>
+            <span class="stat__label">Ecosystem — Academy, Community, Experiences</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 3 — THE VANTAGE POINT  (bird's-eye)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-3" id="paths" aria-labelledby="paths-title">
+      <div class="container container--narrow">
+        <span class="eyebrow">Who We Are · What We Do</span>
+        <h2 id="paths-title" class="title">Three paths. One ecosystem.</h2>
+        <p class="lead">
+          Social Eagle works through three connected surfaces — each designed to make
+          serious learning practical, and practical learning lasting.
+        </p>
+      </div>
+
+      <div class="container">
+        <div class="path-grid">
+          <article class="path-card" data-tilt>
+            <div class="path-card__corner" aria-hidden="true"></div>
+            <div class="path-card__shadow" aria-hidden="true"></div>
+            <span class="path-card__index">01</span>
+            <h3 class="path-card__title">Academy</h3>
+            <p class="path-card__desc">
+              Structured programs that teach for execution — not for understanding alone.
+              Practice is built into every serious path.
+            </p>
+            <span class="path-card__meta">Curriculum · Cohorts · Practice</span>
+          </article>
+
+          <article class="path-card" data-tilt>
+            <div class="path-card__corner" aria-hidden="true"></div>
+            <div class="path-card__shadow" aria-hidden="true"></div>
+            <span class="path-card__index">02</span>
+            <h3 class="path-card__title">Community</h3>
+            <p class="path-card__desc">
+              A community of operators and learners who grow together. Progress is faster
+              — and more sustainable — when people grow alongside each other.
+            </p>
+            <span class="path-card__meta">Operators · Cohort peers · Mentors</span>
+          </article>
+
+          <article class="path-card" data-tilt>
+            <div class="path-card__corner" aria-hidden="true"></div>
+            <div class="path-card__shadow" aria-hidden="true"></div>
+            <span class="path-card__index">03</span>
+            <h3 class="path-card__title">Experiences</h3>
+            <p class="path-card__desc">
+              In-person and high-context environments where learning, practice, and
+              accountability meet — designed for clarity and momentum.
+            </p>
+            <span class="path-card__meta">Workshops · Retreats · Studios</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 4 — THE DIVE  (the strike)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-4" aria-labelledby="dive-title">
+      <!-- Strike flash overlay -->
+      <div class="strike-flash" aria-hidden="true" data-strike></div>
+
+      <div class="container container--narrow">
+        <span class="eyebrow eyebrow--accent">The System</span>
+        <figure class="quote">
+          <blockquote id="dive-title" class="quote__text">
+            <span class="quote__open" aria-hidden="true">“</span>We build environments where people can rely on systems, not heroics.<span class="quote__close" aria-hidden="true">”</span>
+          </blockquote>
+          <figcaption class="quote__cite">
+            <span class="quote__name">Dharaneetharan G.D.</span>
+            <span class="quote__role">Founder &amp; Ecosystem Lead</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="container">
+        <ul class="cases">
+          <li class="case" data-reveal>
+            <span class="case__tag">Academy</span>
+            <h3 class="case__title">Cohorts that finish what they start</h3>
+            <p class="case__desc">
+              Structured programs with built-in practice cycles — measured by the work
+              learners ship, not the hours they sit through.
+            </p>
+          </li>
+          <li class="case" data-reveal>
+            <span class="case__tag">Community</span>
+            <h3 class="case__title">Operators helping operators</h3>
+            <p class="case__desc">
+              A community designed for accountability and signal — a place where
+              feedback is honest and progress is shared.
+            </p>
+          </li>
+          <li class="case" data-reveal>
+            <span class="case__tag">Experiences</span>
+            <h3 class="case__title">Rooms that compress months into days</h3>
+            <p class="case__desc">
+              In-person experiences engineered for clarity, momentum, and decisions
+              that would otherwise take a quarter to make.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 5 — THE STRATOSPHERE  (eagle eye)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-5" aria-labelledby="founder-title">
+      <!-- Real photo, ken-burns slow zoom -->
+      <div class="eye-photo" aria-hidden="true" data-eye>
+        <!-- Hand-drawn SVG eagle eye, no internet assets. -->
+        <svg class="eye-svg" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid slice" data-eye-svg>
+          <use href="#eagle-eye"/>
+        </svg>
+      </div>
+      <div class="eye-scrim" aria-hidden="true"></div>
+
+      <div class="container container--narrow level-5__inner">
+        <span class="eyebrow eyebrow--accent">Founder's Note</span>
+        <h2 id="founder-title" class="title title--display">
+          What we build outlasts what we say.
+        </h2>
+        <p class="lead lead--light">
+          Social Eagle exists to help serious people grow — through structure,
+          responsibility, and practice. Not motivation. Not shortcuts.
+        </p>
+        <p class="body body--light">
+          If you take the work seriously, this place will meet you with the same
+          seriousness in return.
+        </p>
+        <p class="signature">
+          <span class="signature__name">Dharaneetharan G.D.</span>
+          <span class="signature__role">Founder · Social Eagle</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 6 — THE HORIZON  (rise)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-6" id="start" aria-labelledby="rise-title">
+      <div class="container container--narrow level-6__inner">
+        <svg class="monogram" viewBox="0 0 64 64" aria-hidden="true">
+          <use href="#eagle-mark"/>
+        </svg>
+        <h2 id="rise-title" class="title title--display">Together we rise.</h2>
+        <p class="lead lead--light">
+          Whether you start with the Academy, the Community, or an Experience — start
+          deliberately. Start here.
+        </p>
+        <a href="index.html" class="btn btn--pulse btn--talon">
+          <span class="btn__label">Start Here</span>
+          <span class="btn__pulse" aria-hidden="true"></span>
+          <span class="btn__pulse btn__pulse--2" aria-hidden="true"></span>
+        </a>
+        <p class="horizon-meta">
+          Or read more about <a href="index.html">how we work</a>,
+          <a href="index.html#philosophy">our philosophy</a>, and
+          <a href="index.html#recognition">recognition</a>.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Scroll-tracked eagle in right margin (climb in early scroll, dive in late scroll) -->
+  <div class="eagle-track" aria-hidden="true" data-eagle-track>
+    <svg class="eagle-track__shape" viewBox="0 0 80 200" data-eagle-shape>
+      <use href="#eagle-climb"/>
+    </svg>
+  </div>
+
+  <footer class="footer footer--home">
+    <div class="container footer__inner">
+      <p>© 2026 Social Eagle. Built on systems, not slogans.</p>
+      <p class="footer__links">
+        <a href="index.html">About</a> ·
+        <a href="index.html#leadership">Leadership</a> ·
+        <a href="index.html#philosophy">Philosophy</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ─── SVG sprite ─── -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="eagle-mark" viewBox="0 0 64 64">
+        <path fill="currentColor" d="M32 6 L8 30 c-2 2 -1 5 2 5 l8 0 l-6 12 c-1 2 1 4 3 3 l9 -4 l0 8 c0 2 3 3 4 1 l4 -8 l4 8 c1 2 4 1 4 -1 l0 -8 l9 4 c2 1 4 -1 3 -3 l-6 -12 l8 0 c3 0 4 -3 2 -5 z"/>
+      </symbol>
+
+      <symbol id="wing" viewBox="0 0 600 800">
+        <path fill="currentColor" opacity="0.55" d="M0 400
+          C 80 280, 200 230, 340 250
+          C 420 260, 480 290, 540 340
+          C 560 360, 560 380, 540 390
+          C 460 400, 380 405, 320 420
+          C 420 430, 480 445, 540 470
+          C 560 480, 560 500, 540 510
+          C 460 520, 380 525, 320 540
+          C 400 555, 460 575, 520 600
+          C 540 612, 540 632, 520 640
+          C 380 660, 220 650, 100 600
+          C 60 580, 30 540, 10 490
+          C -5 450, -5 425, 0 400 Z"/>
+      </symbol>
+
+      <!-- Eagle climb (silhouette, simplified) -->
+      <symbol id="eagle-climb" viewBox="0 0 80 200">
+        <path fill="currentColor" d="M40 8
+          c-2 0 -4 2 -4 4 l0 14 l-12 -6 c-2 -1 -4 1 -3 3 l10 16 l-22 8 c-2 1 -2 3 0 4 l24 6 l-14 30 c-1 2 1 4 3 3 l14 -10 l0 110 c0 2 2 4 4 4 c2 0 4 -2 4 -4 l0 -110 l14 10 c2 1 4 -1 3 -3 l-14 -30 l24 -6 c2 -1 2 -3 0 -4 l-22 -8 l10 -16 c1 -2 -1 -4 -3 -3 l-12 6 l0 -14 c0 -2 -2 -4 -4 -4 z"/>
+      </symbol>
+
+      <!-- Eagle dive -->
+      <symbol id="eagle-dive" viewBox="0 0 80 200">
+        <path fill="currentColor" d="M40 4
+          c-2 0 -4 2 -4 4 l0 90 l-22 -10 c-2 -1 -4 1 -3 3 l22 24 l-26 30 c-2 2 0 5 3 4 l28 -10 l0 50 l-6 8 c-1 2 1 4 3 3 l5 -3 l0 5 c0 2 2 4 4 4 c2 0 4 -2 4 -4 l0 -5 l5 3 c2 1 4 -1 3 -3 l-6 -8 l0 -50 l28 10 c3 1 5 -2 3 -4 l-26 -30 l22 -24 c1 -2 -1 -4 -3 -3 l-22 10 l0 -90 c0 -2 -2 -4 -4 -4 z"/>
+      </symbol>
+
+      <!-- Hand-designed eagle eye — pure SVG, no internet assets.
+           Composition placed on the right side of viewBox so heading
+           text on the left has clear space. -->
+      <symbol id="eagle-eye" viewBox="0 0 1600 800">
+        <defs>
+          <!-- Iris: golden radial with darker rim and inner -->
+          <radialGradient id="ee-iris" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#3a1f04"/>
+            <stop offset="20%"  stop-color="#a06a14"/>
+            <stop offset="55%"  stop-color="#f0bb3a"/>
+            <stop offset="78%"  stop-color="#c08218"/>
+            <stop offset="100%" stop-color="#3a1c04"/>
+          </radialGradient>
+          <!-- Glow layer near the pupil -->
+          <radialGradient id="ee-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stop-color="rgba(255,228,150,0.35)"/>
+            <stop offset="60%" stop-color="rgba(255,228,150,0)"/>
+          </radialGradient>
+          <!-- Outer vignette to fade the eye into the section -->
+          <radialGradient id="ee-vignette" cx="50%" cy="50%" r="55%">
+            <stop offset="55%"  stop-color="rgba(0,0,0,0)"/>
+            <stop offset="100%" stop-color="rgba(5,5,7,0.95)"/>
+          </radialGradient>
+          <!-- Organic iris texture via fractal noise -->
+          <filter id="ee-tex" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9 0.04" numOctaves="2" seed="7" result="t"/>
+            <feColorMatrix in="t" values="
+              0 0 0 0 0.05
+              0 0 0 0 0.03
+              0 0 0 0 0.01
+              0 0 0 0.55 0"/>
+            <feComposite in2="SourceGraphic" operator="in"/>
+          </filter>
+          <!-- Soft bloom for catchlight -->
+          <filter id="ee-bloom" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6"/>
+          </filter>
+        </defs>
+
+        <!-- Eye composition centred at (1100, 400) -->
+        <g transform="translate(1100, 400)">
+
+          <!-- Outer feather fronds (radiating dark strokes) -->
+          <g stroke="#0e0805" stroke-width="2.8" stroke-linecap="round" opacity="0.92">
+            <line x1="0" y1="-235" x2="0" y2="-345"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(20)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(40)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(60)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(80)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(100)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(120)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(140)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(160)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(180)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(200)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(220)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(240)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(260)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(280)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(300)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(320)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(340)"/>
+          </g>
+          <!-- Finer fronds between -->
+          <g stroke="#1a0d06" stroke-width="1.5" stroke-linecap="round" opacity="0.7">
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(10)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(30)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(50)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(70)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(90)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(110)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(130)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(150)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(170)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(190)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(210)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(230)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(250)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(270)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(290)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(310)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(330)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(350)"/>
+          </g>
+
+          <!-- Brow shadow (upper feather mass) -->
+          <ellipse cx="-30" cy="-220" rx="320" ry="90" fill="#0a0503" opacity="0.7"/>
+          <!-- Lower feather shadow -->
+          <ellipse cx="20" cy="220" rx="300" ry="70" fill="#0a0503" opacity="0.55"/>
+
+          <!-- Eye socket dark bed -->
+          <circle cx="0" cy="0" r="240" fill="#13080a"/>
+
+          <!-- Iris -->
+          <circle cx="0" cy="0" r="220" fill="url(#ee-iris)"/>
+
+          <!-- Iris radial striations (prominent) -->
+          <g stroke="rgba(20,10,2,0.85)" stroke-width="2.2" stroke-linecap="round">
+            <line x1="0" y1="-92" x2="0" y2="-205"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(30)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(60)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(90)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(120)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(150)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(180)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(210)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(240)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(270)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(300)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(330)"/>
+          </g>
+          <!-- Finer in-between striations -->
+          <g stroke="rgba(20,10,2,0.45)" stroke-width="1.1" stroke-linecap="round">
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(15)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(45)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(75)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(105)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(135)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(165)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(195)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(225)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(255)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(285)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(315)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(345)"/>
+          </g>
+
+          <!-- Organic noise texture on top of iris -->
+          <circle cx="0" cy="0" r="220" fill="#000" filter="url(#ee-tex)" opacity="0.6"/>
+
+          <!-- Subtle glow ring near pupil -->
+          <circle cx="0" cy="0" r="220" fill="url(#ee-glow)"/>
+
+          <!-- Pupil + edge highlight -->
+          <circle cx="0" cy="0" r="86" fill="#040203"/>
+          <circle cx="0" cy="0" r="88" fill="none" stroke="rgba(255,200,90,0.35)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+
+          <!-- Catchlight (life in the eye) -->
+          <ellipse cx="-32" cy="-32" rx="34" ry="22" fill="rgba(255,250,235,0.45)" filter="url(#ee-bloom)"/>
+          <ellipse cx="-32" cy="-32" rx="20" ry="13" fill="rgba(255,250,235,0.85)"/>
+          <circle  cx="-40" cy="-40" r="5"  fill="#ffffff"/>
+
+          <!-- Outer vignette to dissolve into the section -->
+          <circle cx="0" cy="0" r="420" fill="url(#ee-vignette)"/>
+        </g>
+      </symbol>
+
+      <!-- Parallax: distant clouds -->
+      <symbol id="clouds" viewBox="0 0 1600 900">
+        <g fill="rgba(212,168,67,0.06)">
+          <ellipse cx="200" cy="180" rx="220" ry="36"/>
+          <ellipse cx="500" cy="240" rx="280" ry="42"/>
+          <ellipse cx="900" cy="170" rx="320" ry="40"/>
+          <ellipse cx="1280" cy="260" rx="260" ry="36"/>
+          <ellipse cx="1500" cy="140" rx="200" ry="30"/>
+        </g>
+        <g fill="rgba(212,168,67,0.04)">
+          <ellipse cx="100"  cy="350" rx="320" ry="52"/>
+          <ellipse cx="780"  cy="380" rx="380" ry="56"/>
+          <ellipse cx="1400" cy="360" rx="300" ry="48"/>
+        </g>
+      </symbol>
+
+      <!-- Distant ridge -->
+      <symbol id="ridge-far" viewBox="0 0 1600 900">
+        <path fill="rgba(91,26,38,0.35)"
+          d="M0 720
+            L120 660 L240 700 L360 620 L500 680 L640 600 L780 660
+            L920 580 L1080 660 L1240 600 L1380 680 L1520 620 L1600 660
+            L1600 900 L0 900 Z"/>
+      </symbol>
+
+      <!-- Near ridge -->
+      <symbol id="ridge-near" viewBox="0 0 1600 900">
+        <path fill="rgba(10,10,12,0.85)"
+          d="M0 820
+            L100 740 L220 800 L340 700 L460 780 L580 720 L700 800
+            L820 720 L960 800 L1100 720 L1240 800 L1380 720 L1500 800 L1600 760
+            L1600 900 L0 900 Z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="home.js" defer></script>
+</body>
+</html>

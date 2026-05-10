@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Eagle — Learn. Experience. Grow.</title>
+  <meta name="description" content="Social Eagle is an ecosystem for serious learners — built on systems, integrity, and applied practice. Learn. Experience. Grow." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body class="home">
+
+  <!-- ─── Nav ─────────────────────────────────────── -->
+  <nav class="nav nav--home" data-nav>
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <svg class="nav__mark" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <use href="#eagle-mark"/>
+        </svg>
+        Social Eagle
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html">About</a></li>
+        <li><a href="index.html#philosophy">Philosophy</a></li>
+        <li><a href="index.html#recognition">Recognition</a></li>
+        <li><a href="#start" class="nav__cta">Start Here</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 1 — THE NEST  (Hero, ground level)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-1" aria-labelledby="hero-title">
+      <!-- Wings: SVG, fixed in viewport, fade as user scrolls past hero -->
+      <div class="wings" aria-hidden="true" data-wings>
+        <svg class="wings__svg wings__left" viewBox="0 0 600 800" preserveAspectRatio="xMinYMid slice">
+          <use href="#wing"/>
+        </svg>
+        <svg class="wings__svg wings__right" viewBox="0 0 600 800" preserveAspectRatio="xMaxYMid slice">
+          <use href="#wing" transform="scale(-1,1) translate(-600,0)"/>
+        </svg>
+      </div>
+
+      <div class="container level-1__inner">
+        <span class="eyebrow eyebrow--light">An ecosystem for serious learners</span>
+        <h1 id="hero-title" class="display">
+          <span class="display__line">Learn.</span>
+          <span class="display__line">Experience.</span>
+          <span class="display__line display__line--accent">Grow.</span>
+        </h1>
+        <p class="lead lead--light">
+          Social Eagle is built on systems, not slogans — a place to learn deliberately,
+          practise consistently, and grow with people who take the work seriously.
+        </p>
+        <div class="actions">
+          <a href="#start" class="btn btn--primary">Start Here</a>
+          <a href="#paths" class="btn btn--ghost">See the Paths</a>
+        </div>
+        <div class="scroll-cue" aria-hidden="true">
+          <span>Scroll</span>
+          <svg width="14" height="20" viewBox="0 0 14 20" fill="none">
+            <path d="M7 1v15m0 0l-5-5m5 5l5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 2 — THE ASCENT  (Stats / evidence)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-2" aria-labelledby="ascent-title">
+      <!-- Eagle silhouette in climb on right margin -->
+      <svg class="eagle-margin eagle-margin--climb" viewBox="0 0 80 200" aria-hidden="true" data-eagle="climb">
+        <use href="#eagle-climb"/>
+      </svg>
+
+      <div class="container container--narrow">
+        <span class="eyebrow eyebrow--accent">The Evidence</span>
+        <h2 id="ascent-title" class="title">Built quietly. Measured publicly.</h2>
+        <p class="body body--light">
+          We don't lead with noise. We let the work — and its recognition — speak.
+        </p>
+      </div>
+
+      <div class="container">
+        <ul class="stats" data-stats>
+          <li class="stat" data-reveal>
+            <span class="stat__num">8</span>
+            <span class="stat__label">National recognitions &amp; awards</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__num">5<span class="stat__num-suffix">+ yrs</span></span>
+            <span class="stat__label">Continuous industry recognition (2021–2026)</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__num">10</span>
+            <span class="stat__label">Top Social Media Startups — Silicon India</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__num">1</span>
+            <span class="stat__label">Ecosystem — Academy, Community, Experiences</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 3 — THE VANTAGE POINT  (Three paths)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-3" id="paths" aria-labelledby="paths-title">
+      <div class="container container--narrow">
+        <span class="eyebrow">Who We Are · What We Do</span>
+        <h2 id="paths-title" class="title">Three paths. One ecosystem.</h2>
+        <p class="lead">
+          Social Eagle works through three connected surfaces — each designed to make
+          serious learning practical, and practical learning lasting.
+        </p>
+      </div>
+
+      <div class="container">
+        <div class="path-grid">
+          <article class="path-card" data-reveal>
+            <div class="path-card__corner" aria-hidden="true"></div>
+            <span class="path-card__index">01</span>
+            <h3 class="path-card__title">Academy</h3>
+            <p class="path-card__desc">
+              Structured programs that teach for execution — not for understanding alone.
+              Practice is built into every serious path.
+            </p>
+            <span class="path-card__meta">Curriculum · Cohorts · Practice</span>
+          </article>
+
+          <article class="path-card" data-reveal>
+            <div class="path-card__corner" aria-hidden="true"></div>
+            <span class="path-card__index">02</span>
+            <h3 class="path-card__title">Community</h3>
+            <p class="path-card__desc">
+              A community of operators and learners who grow together. Progress is faster
+              — and more sustainable — when people grow alongside each other.
+            </p>
+            <span class="path-card__meta">Operators · Cohort peers · Mentors</span>
+          </article>
+
+          <article class="path-card" data-reveal>
+            <div class="path-card__corner" aria-hidden="true"></div>
+            <span class="path-card__index">03</span>
+            <h3 class="path-card__title">Experiences</h3>
+            <p class="path-card__desc">
+              In-person and high-context environments where learning, practice, and
+              accountability meet — designed for clarity and momentum.
+            </p>
+            <span class="path-card__meta">Workshops · Retreats · Studios</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 4 — THE DIVE  (Systems + case studies)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-4" aria-labelledby="dive-title">
+      <svg class="eagle-margin eagle-margin--dive" viewBox="0 0 80 200" aria-hidden="true" data-eagle="dive">
+        <use href="#eagle-dive"/>
+      </svg>
+
+      <div class="container container--narrow">
+        <span class="eyebrow eyebrow--accent">The System</span>
+        <figure class="quote">
+          <blockquote id="dive-title" class="quote__text">
+            “We build environments where people can rely on systems, not heroics.”
+          </blockquote>
+          <figcaption class="quote__cite">
+            <span class="quote__name">Dharaneetharan G.D.</span>
+            <span class="quote__role">Founder &amp; Ecosystem Lead</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="container">
+        <ul class="cases">
+          <li class="case" data-reveal>
+            <span class="case__tag">Academy</span>
+            <h3 class="case__title">Cohorts that finish what they start</h3>
+            <p class="case__desc">
+              Structured programs with built-in practice cycles — measured by the work
+              learners ship, not the hours they sit through.
+            </p>
+          </li>
+          <li class="case" data-reveal>
+            <span class="case__tag">Community</span>
+            <h3 class="case__title">Operators helping operators</h3>
+            <p class="case__desc">
+              A community designed for accountability and signal — a place where
+              feedback is honest and progress is shared.
+            </p>
+          </li>
+          <li class="case" data-reveal>
+            <span class="case__tag">Experiences</span>
+            <h3 class="case__title">Rooms that compress months into days</h3>
+            <p class="case__desc">
+              In-person experiences engineered for clarity, momentum, and decisions
+              that would otherwise take a quarter to make.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 5 — THE STRATOSPHERE  (Founder's note)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-5" aria-labelledby="founder-title">
+      <!-- Stylised eagle eye (vector, not 4K raster) -->
+      <svg class="eye-bg" viewBox="0 0 800 400" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+        <use href="#eagle-eye"/>
+      </svg>
+
+      <div class="container container--narrow level-5__inner">
+        <span class="eyebrow eyebrow--accent">Founder's Note</span>
+        <h2 id="founder-title" class="title title--display">
+          What we build outlasts what we say.
+        </h2>
+        <p class="lead lead--light">
+          Social Eagle exists to help serious people grow — through structure,
+          responsibility, and practice. Not motivation. Not shortcuts.
+        </p>
+        <p class="body body--light">
+          If you take the work seriously, this place will meet you with the same
+          seriousness in return.
+        </p>
+        <p class="signature">
+          <span class="signature__name">Dharaneetharan G.D.</span>
+          <span class="signature__role">Founder · Social Eagle</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         LEVEL 6 — THE HORIZON  (Together We Rise)
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="level level-6" id="start" aria-labelledby="rise-title">
+      <div class="container container--narrow level-6__inner">
+        <svg class="monogram" viewBox="0 0 64 64" aria-hidden="true">
+          <use href="#eagle-mark"/>
+        </svg>
+        <h2 id="rise-title" class="title title--display">Together we rise.</h2>
+        <p class="lead lead--light">
+          Whether you start with the Academy, the Community, or an Experience — start
+          deliberately. Start here.
+        </p>
+        <a href="index.html" class="btn btn--pulse">
+          <span class="btn__label">Start Here</span>
+          <span class="btn__pulse" aria-hidden="true"></span>
+        </a>
+        <p class="horizon-meta">
+          Or read more about <a href="index.html">how we work</a>,
+          <a href="index.html#philosophy">our philosophy</a>, and
+          <a href="index.html#recognition">recognition</a>.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer footer--home">
+    <div class="container footer__inner">
+      <p>© 2026 Social Eagle. Built on systems, not slogans.</p>
+      <p class="footer__links">
+        <a href="index.html">About</a> ·
+        <a href="index.html#leadership">Leadership</a> ·
+        <a href="index.html#philosophy">Philosophy</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ─── SVG sprite (eagle marks, wings, eye) ─── -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- Eagle monogram (simplified mark) -->
+      <symbol id="eagle-mark" viewBox="0 0 64 64">
+        <path fill="currentColor" d="M32 6 L8 30 c-2 2 -1 5 2 5 l8 0 l-6 12 c-1 2 1 4 3 3 l9 -4 l0 8 c0 2 3 3 4 1 l4 -8 l4 8 c1 2 4 1 4 -1 l0 -8 l9 4 c2 1 4 -1 3 -3 l-6 -12 l8 0 c3 0 4 -3 2 -5 z"/>
+      </symbol>
+
+      <!-- Wing (used twice, mirrored) -->
+      <symbol id="wing" viewBox="0 0 600 800">
+        <path fill="currentColor" opacity="0.45" d="M0 400
+          C 80 280, 200 230, 340 250
+          C 420 260, 480 290, 540 340
+          C 560 360, 560 380, 540 390
+          C 460 400, 380 405, 320 420
+          C 420 430, 480 445, 540 470
+          C 560 480, 560 500, 540 510
+          C 460 520, 380 525, 320 540
+          C 400 555, 460 575, 520 600
+          C 540 612, 540 632, 520 640
+          C 380 660, 220 650, 100 600
+          C 60 580, 30 540, 10 490
+          C -5 450, -5 425, 0 400 Z"/>
+      </symbol>
+
+      <!-- Eagle in steep climb (silhouette, simplified) -->
+      <symbol id="eagle-climb" viewBox="0 0 80 200">
+        <path fill="currentColor" d="M40 8
+          c-2 0 -4 2 -4 4 l0 14 l-12 -6 c-2 -1 -4 1 -3 3 l10 16 l-22 8 c-2 1 -2 3 0 4 l24 6 l-14 30 c-1 2 1 4 3 3 l14 -10 l0 110 c0 2 2 4 4 4 c2 0 4 -2 4 -4 l0 -110 l14 10 c2 1 4 -1 3 -3 l-14 -30 l24 -6 c2 -1 2 -3 0 -4 l-22 -8 l10 -16 c1 -2 -1 -4 -3 -3 l-12 6 l0 -14 c0 -2 -2 -4 -4 -4 z"/>
+      </symbol>
+
+      <!-- Eagle in dive / strike -->
+      <symbol id="eagle-dive" viewBox="0 0 80 200">
+        <path fill="currentColor" d="M40 4
+          c-2 0 -4 2 -4 4 l0 90 l-22 -10 c-2 -1 -4 1 -3 3 l22 24 l-26 30 c-2 2 0 5 3 4 l28 -10 l0 50 l-6 8 c-1 2 1 4 3 3 l5 -3 l0 5 c0 2 2 4 4 4 c2 0 4 -2 4 -4 l0 -5 l5 3 c2 1 4 -1 3 -3 l-6 -8 l0 -50 l28 10 c3 1 5 -2 3 -4 l-26 -30 l22 -24 c1 -2 -1 -4 -3 -3 l-22 10 l0 -90 c0 -2 -2 -4 -4 -4 z"/>
+      </symbol>
+
+      <!-- Stylised eagle eye (concentric rings + iris) -->
+      <symbol id="eagle-eye" viewBox="0 0 800 400">
+        <ellipse cx="400" cy="200" rx="380" ry="160" fill="none" stroke="currentColor" stroke-width="2" opacity="0.25"/>
+        <ellipse cx="400" cy="200" rx="300" ry="125" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
+        <ellipse cx="400" cy="200" rx="220" ry="92" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+        <circle cx="400" cy="200" r="80" fill="currentColor" opacity="0.85"/>
+        <circle cx="400" cy="200" r="40" fill="#0a0a0a"/>
+        <circle cx="386" cy="186" r="10" fill="#ffffff" opacity="0.9"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="home.js" defer></script>
+</body>
+</html>

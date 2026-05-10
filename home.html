@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Social Eagle — Learn. Experience. Grow.</title>
   <meta name="description" content="Social Eagle is an ecosystem for serious learners — built on systems, integrity, and applied practice. Learn. Experience. Grow." />
-  <link rel="preconnect" href="https://images.unsplash.com" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="home.css" />
 </head>
@@ -268,18 +267,8 @@
     <section class="level level-5" aria-labelledby="founder-title">
       <!-- Real photo, ken-burns slow zoom -->
       <div class="eye-photo" aria-hidden="true" data-eye>
-        <!-- Tries assets/eagle-eye.jpg first; if missing, falls back to
-             the Unsplash CDN; if that's blocked too (e.g. opening via
-             file://), the SVG below is revealed via the onerror chain. -->
-        <img
-          src="assets/eagle-eye.jpg"
-          alt=""
-          loading="lazy"
-          referrerpolicy="no-referrer"
-          onerror="if(!this.dataset.swap){this.dataset.swap=1;this.src='https://images.unsplash.com/photo-1611689342806-0863700ce1e4?auto=format&fit=crop&w=1920&q=80';}else{this.parentElement.classList.add('eye-photo--fallback');this.remove();}"
-        />
-        <!-- Vector fallback eye (used if both image sources fail) -->
-        <svg class="eye-photo__fallback" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+        <!-- Hand-drawn SVG eagle eye, no internet assets. -->
+        <svg class="eye-svg" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid slice" data-eye-svg>
           <use href="#eagle-eye"/>
         </svg>
       </div>
@@ -386,14 +375,152 @@
           c-2 0 -4 2 -4 4 l0 90 l-22 -10 c-2 -1 -4 1 -3 3 l22 24 l-26 30 c-2 2 0 5 3 4 l28 -10 l0 50 l-6 8 c-1 2 1 4 3 3 l5 -3 l0 5 c0 2 2 4 4 4 c2 0 4 -2 4 -4 l0 -5 l5 3 c2 1 4 -1 3 -3 l-6 -8 l0 -50 l28 10 c3 1 5 -2 3 -4 l-26 -30 l22 -24 c1 -2 -1 -4 -3 -3 l-22 10 l0 -90 c0 -2 -2 -4 -4 -4 z"/>
       </symbol>
 
-      <!-- Stylised vector eagle eye (fallback) -->
-      <symbol id="eagle-eye" viewBox="0 0 800 400">
-        <ellipse cx="400" cy="200" rx="380" ry="160" fill="none" stroke="currentColor" stroke-width="2" opacity="0.25"/>
-        <ellipse cx="400" cy="200" rx="300" ry="125" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
-        <ellipse cx="400" cy="200" rx="220" ry="92" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
-        <circle cx="400" cy="200" r="80" fill="currentColor" opacity="0.85"/>
-        <circle cx="400" cy="200" r="40" fill="#0a0a0a"/>
-        <circle cx="386" cy="186" r="10" fill="#ffffff" opacity="0.9"/>
+      <!-- Hand-designed eagle eye — pure SVG, no internet assets.
+           Composition placed on the right side of viewBox so heading
+           text on the left has clear space. -->
+      <symbol id="eagle-eye" viewBox="0 0 1600 800">
+        <defs>
+          <!-- Iris: golden radial with darker rim and inner -->
+          <radialGradient id="ee-iris" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#3a1f04"/>
+            <stop offset="20%"  stop-color="#a06a14"/>
+            <stop offset="55%"  stop-color="#f0bb3a"/>
+            <stop offset="78%"  stop-color="#c08218"/>
+            <stop offset="100%" stop-color="#3a1c04"/>
+          </radialGradient>
+          <!-- Glow layer near the pupil -->
+          <radialGradient id="ee-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stop-color="rgba(255,228,150,0.35)"/>
+            <stop offset="60%" stop-color="rgba(255,228,150,0)"/>
+          </radialGradient>
+          <!-- Outer vignette to fade the eye into the section -->
+          <radialGradient id="ee-vignette" cx="50%" cy="50%" r="55%">
+            <stop offset="55%"  stop-color="rgba(0,0,0,0)"/>
+            <stop offset="100%" stop-color="rgba(5,5,7,0.95)"/>
+          </radialGradient>
+          <!-- Organic iris texture via fractal noise -->
+          <filter id="ee-tex" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9 0.04" numOctaves="2" seed="7" result="t"/>
+            <feColorMatrix in="t" values="
+              0 0 0 0 0.05
+              0 0 0 0 0.03
+              0 0 0 0 0.01
+              0 0 0 0.55 0"/>
+            <feComposite in2="SourceGraphic" operator="in"/>
+          </filter>
+          <!-- Soft bloom for catchlight -->
+          <filter id="ee-bloom" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6"/>
+          </filter>
+        </defs>
+
+        <!-- Eye composition centred at (1100, 400) -->
+        <g transform="translate(1100, 400)">
+
+          <!-- Outer feather fronds (radiating dark strokes) -->
+          <g stroke="#0e0805" stroke-width="2.8" stroke-linecap="round" opacity="0.92">
+            <line x1="0" y1="-235" x2="0" y2="-345"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(20)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(40)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(60)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(80)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(100)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(120)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(140)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(160)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(180)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(200)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(220)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(240)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(260)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(280)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(300)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(320)"/>
+            <line x1="0" y1="-235" x2="0" y2="-345" transform="rotate(340)"/>
+          </g>
+          <!-- Finer fronds between -->
+          <g stroke="#1a0d06" stroke-width="1.5" stroke-linecap="round" opacity="0.7">
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(10)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(30)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(50)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(70)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(90)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(110)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(130)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(150)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(170)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(190)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(210)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(230)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(250)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(270)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(290)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(310)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(330)"/>
+            <line x1="0" y1="-228" x2="0" y2="-310" transform="rotate(350)"/>
+          </g>
+
+          <!-- Brow shadow (upper feather mass) -->
+          <ellipse cx="-30" cy="-220" rx="320" ry="90" fill="#0a0503" opacity="0.7"/>
+          <!-- Lower feather shadow -->
+          <ellipse cx="20" cy="220" rx="300" ry="70" fill="#0a0503" opacity="0.55"/>
+
+          <!-- Eye socket dark bed -->
+          <circle cx="0" cy="0" r="240" fill="#13080a"/>
+
+          <!-- Iris -->
+          <circle cx="0" cy="0" r="220" fill="url(#ee-iris)"/>
+
+          <!-- Iris radial striations (prominent) -->
+          <g stroke="rgba(20,10,2,0.85)" stroke-width="2.2" stroke-linecap="round">
+            <line x1="0" y1="-92" x2="0" y2="-205"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(30)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(60)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(90)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(120)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(150)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(180)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(210)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(240)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(270)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(300)"/>
+            <line x1="0" y1="-92" x2="0" y2="-205" transform="rotate(330)"/>
+          </g>
+          <!-- Finer in-between striations -->
+          <g stroke="rgba(20,10,2,0.45)" stroke-width="1.1" stroke-linecap="round">
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(15)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(45)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(75)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(105)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(135)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(165)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(195)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(225)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(255)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(285)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(315)"/>
+            <line x1="0" y1="-95" x2="0" y2="-200" transform="rotate(345)"/>
+          </g>
+
+          <!-- Organic noise texture on top of iris -->
+          <circle cx="0" cy="0" r="220" fill="#000" filter="url(#ee-tex)" opacity="0.6"/>
+
+          <!-- Subtle glow ring near pupil -->
+          <circle cx="0" cy="0" r="220" fill="url(#ee-glow)"/>
+
+          <!-- Pupil + edge highlight -->
+          <circle cx="0" cy="0" r="86" fill="#040203"/>
+          <circle cx="0" cy="0" r="88" fill="none" stroke="rgba(255,200,90,0.35)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+
+          <!-- Catchlight (life in the eye) -->
+          <ellipse cx="-32" cy="-32" rx="34" ry="22" fill="rgba(255,250,235,0.45)" filter="url(#ee-bloom)"/>
+          <ellipse cx="-32" cy="-32" rx="20" ry="13" fill="rgba(255,250,235,0.85)"/>
+          <circle  cx="-40" cy="-40" r="5"  fill="#ffffff"/>
+
+          <!-- Outer vignette to dissolve into the section -->
+          <circle cx="0" cy="0" r="420" fill="url(#ee-vignette)"/>
+        </g>
       </symbol>
 
       <!-- Parallax: distant clouds -->

@@ -125,7 +125,7 @@
     const stats    = $$('[data-thermal]');
     const eagleEl  = $('[data-eagle-track]');
     const eagleSh  = $('[data-eagle-shape]');
-    const eyeImg   = $('[data-eye] img');
+    const eyeSvg   = $('[data-eye-svg]');
     const wingShEl = $('[data-wing-shadow]');
 
     // Use href swap for the eagle SVG to morph climb↔dive
@@ -220,14 +220,13 @@
       }
 
       // 5) Level-5 eye: subtle ken-burns scale tied to scroll within section
-      if (eyeImg) {
-        const sect = eyeImg.closest('.level-5');
+      if (eyeSvg) {
+        const sect = eyeSvg.closest('.level-5');
         if (sect) {
           const r = sect.getBoundingClientRect();
           const visible = Math.max(0, Math.min(1, 1 - r.top / vh));
-          const scale = 1.05 + visible * 0.12;
-          eyeImg.style.setProperty('--eye-scale', scale.toFixed(3));
-          eyeImg.style.transform = 'scale(' + scale.toFixed(3) + ')';
+          const scale = 1 + visible * 0.18;
+          eyeSvg.style.setProperty('--eye-scale', scale.toFixed(3));
         }
       }
 

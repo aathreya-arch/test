@@ -45,6 +45,119 @@ This Skill is not needed in the following situations:
 
 **Decision criteria**: If the task will change how a feature **looks, feels, moves, or is interacted with**, this Skill should be used.
 
+## Design Foundations (Mandatory)
+
+These foundations apply to **every** UI deliverable produced under this skill. Treat them as hard constraints — not suggestions. If a request conflicts with them, surface the conflict before writing code.
+
+### 1. Typography Scale (use a real type system — not random font sizes)
+
+Pick **one** scale and use it everywhere. Never invent sizes per component.
+
+- **Default modular scale** (1.250 major third, 16px base):
+  - `xs 12` · `sm 14` · `base 16` · `lg 18` · `xl 20` · `2xl 24` · `3xl 30` · `4xl 36` · `5xl 48` · `6xl 60` · `7xl 72`
+- **Semantic roles** (map to scale, do not hardcode in components):
+  - `display` (hero headlines) · `headline` (page titles) · `title` (section/card titles) · `body` (paragraphs) · `label` (UI labels) · `caption` (metadata)
+- **Line-height**: body 1.5–1.75; headings 1.1–1.3 · **Letter-spacing**: tighten only on display sizes (-0.01em to -0.02em)
+- **Weights**: limit to 3 weights per family (e.g. 400/500/700). No 100/200 weights for body text.
+- **Native platforms**: use Apple Dynamic Type styles or Material type roles (display/headline/title/body/label) — do not invent ad-hoc sizes.
+
+**Forbidden:** `font-size: 13px`, `15px`, `17px`, `19px` etc. picked ad hoc per component. If you reach for a value not in the scale, the scale is wrong — fix the scale, not the instance.
+
+### 2. Spacing System (8px base grid)
+
+All padding, margin, gap, and layout spacing **must** be a multiple of the base unit.
+
+- **Base unit:** 8px (use 4px only as a half-step for tight inline gaps like icon↔label)
+- **Scale (in px):** `0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128`
+- **Token names:** `space-0, space-1 (4), space-2 (8), space-3 (12), space-4 (16), space-5 (20), space-6 (24), space-8 (32), space-10 (40), space-12 (48), space-16 (64), space-20 (80), space-24 (96), space-32 (128)`
+- **Tier guidance:** intra-component 4–8 · component padding 12–24 · section spacing 32–64 · page-level 64–128
+- **Touch targets:** min 44×44pt (iOS) / 48×48dp (Android), with ≥8px gap between adjacent targets
+
+**Forbidden:** `margin: 7px`, `padding: 13px 17px`, `gap: 11px`, or any value that is not on the grid. Round to the nearest valid token rather than introducing a new one.
+
+### 3. Color Tokens (primary, neutral, accent — no random hex codes)
+
+Components must reference **semantic tokens**, never raw hex.
+
+Required token groups:
+
+| Group | Purpose | Example tokens |
+|-------|---------|----------------|
+| **Primary** | Brand action color, primary CTAs | `primary-50 … primary-900`, `primary` (default 500/600), `primary-foreground` |
+| **Neutral** | Surfaces, text, borders | `background`, `surface`, `surface-muted`, `border`, `text`, `text-muted`, `text-subtle` |
+| **Accent** | Secondary highlight (used sparingly) | `accent`, `accent-foreground` |
+| **Semantic state** | Functional meaning | `success`, `warning`, `danger`, `info` (each with `-foreground`) |
+
+Rules:
+- Define a **9- or 11-step tonal ramp** per hue (50, 100, 200, … 900). No one-off shades inside components.
+- **Pair every foreground with a background token** that meets WCAG (body 4.5:1, large text 3:1, UI glyphs 3:1).
+- **Dark mode** is a separate token mapping, not an inverted color filter. Test contrast independently.
+- **Never** write `color: #3a7bd5` or `bg-[#fafafa]` in a component. If a needed token doesn't exist, **add it to the token file first**, then reference it.
+- Convey state with **icon + label + color** — never color alone.
+
+**Forbidden:** raw hex/rgb/hsl literals in component files, Tailwind arbitrary color values (`bg-[#…]`, `text-[#…]`), inline style colors that aren't theme-driven.
+
+### 4. Component Patterns
+
+Components must implement **all states** and **all required slots** before they're considered done.
+
+#### Button — required states & variants
+
+- **States (every variant):** `default` · `hover` · `focus-visible` (2px ring, ≥3:1 contrast) · `active/pressed` · `disabled` (opacity 0.38–0.5, no hover/active) · `loading` (spinner + non-interactive)
+- **Variants:** `primary` (one per screen), `secondary`, `ghost/tertiary`, `destructive` (semantic danger color, spatially separated from primary)
+- **Sizes:** `sm` (32–36px height), `md` (40–44px), `lg` (48–56px) — heights snap to spacing scale
+- **Anatomy:** optional leading icon · label · optional trailing icon — icons sized via icon tokens (`icon-sm 16`, `icon-md 20`, `icon-lg 24`)
+- **Behavior:** disable during async; show spinner; restore on completion. Never silently no-op.
+
+#### Card — required structure
+
+- **Slots:** `media` (optional) · `header` (title + optional eyebrow/meta) · `body` (content) · `actions` (footer, right-aligned by default)
+- **Padding:** uses `space-4` or `space-6` consistently; same value on all four sides unless asymmetry is intentional
+- **Elevation:** one consistent shadow scale (`shadow-sm/md/lg`); never random `box-shadow` values
+- **Radius:** uses radius tokens (`radius-sm/md/lg`); the same family across all cards in a product
+- **Interactive cards** must have hover, focus-visible, and pressed states; entire card is one focusable element with one clear primary action
+
+#### Form — required layout
+
+- **Field anatomy (in order):** persistent visible label · optional helper text · input · inline error (below field, anchored)
+- **Labels:** always visible above the input — never placeholder-as-label
+- **Required:** mark with asterisk + `aria-required`; explain in legend if many fields
+- **Validation:** on blur, not on every keystroke; show success affirmatively for critical fields
+- **Errors:** state cause + recovery; aria-live or role=alert; auto-focus first invalid field on submit; summary at top for multi-error forms
+- **Submit:** loading state on the button; disable during request; success/error toast or inline confirmation
+- **Mobile:** input height ≥44px; correct `inputmode`/`type` for keyboard; autocomplete attributes set
+- **Grouping:** related fields grouped via fieldset/legend or visual section spacing (`space-6`+ between groups, `space-3` within a group)
+
+### 5. Avoid Generic AI Aesthetic
+
+Default AI-generated UI has a recognizable look. Actively design **away** from it.
+
+**Banned defaults — do not ship these without an explicit, justified reason:**
+
+- Purple→blue or pink→purple linear gradients on hero sections, buttons, or backgrounds
+- "Glow" / colored drop-shadow halos behind cards, buttons, or icons
+- Glassmorphism applied indiscriminately (frosted blur on every card)
+- Center-stacked hero with a single gradient headline + two pill buttons + emoji
+- Emoji used as structural icons (🚀 ⚡ ✨ 🎨) — use Lucide / Heroicons / SF Symbols / Material Symbols
+- Stock "AI sparkle" / wand iconography unless the feature is literally AI generation
+- Floating 3D blobs, isometric illustrations, or generic gradient mesh backgrounds
+- Tailwind defaults left unstyled: `rounded-lg shadow-md bg-white p-6` cards with no identity
+- Every section using the same card-on-light-gray-background rhythm
+- Generic copy: "Supercharge your workflow", "Unlock the power of…", "Built for the modern team"
+- Animated gradient text, rainbow borders, or shimmer effects with no functional meaning
+
+**Pursue instead:**
+
+- A **specific** visual identity tied to the product domain (research the industry first via `--design-system`)
+- Real product content / real screenshots over abstract illustration
+- Restraint: one accent color used sparingly beats five gradients
+- Distinctive typography pairing (not Inter + Inter Bold for everything)
+- Asymmetry, editorial layouts, or bento grids when they fit — not always center-stacked
+- Iconography from one cohesive set with consistent stroke width
+- Copy that names a concrete user, problem, or outcome
+
+**Self-check before shipping:** "If I removed the product name and screenshots, would this look like 50 other AI-generated landing pages?" If yes, redesign.
+
 ## Rule Categories by Priority
 
 *For human/AI reference: follow priority 1→10 to decide which rule category to focus on first; use `--domain <Domain>` to query details when needed. Scripts do not read this table.*

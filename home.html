@@ -268,14 +268,17 @@
     <section class="level level-5" aria-labelledby="founder-title">
       <!-- Real photo, ken-burns slow zoom -->
       <div class="eye-photo" aria-hidden="true" data-eye>
+        <!-- Tries assets/eagle-eye.jpg first; if missing, falls back to
+             the Unsplash CDN; if that's blocked too (e.g. opening via
+             file://), the SVG below is revealed via the onerror chain. -->
         <img
-          src="https://images.unsplash.com/photo-1611689342806-0863700ce1e4?auto=format&fit=crop&w=1920&q=80"
+          src="assets/eagle-eye.jpg"
           alt=""
           loading="lazy"
           referrerpolicy="no-referrer"
-          onerror="this.parentElement.classList.add('eye-photo--fallback'); this.remove();"
+          onerror="if(!this.dataset.swap){this.dataset.swap=1;this.src='https://images.unsplash.com/photo-1611689342806-0863700ce1e4?auto=format&fit=crop&w=1920&q=80';}else{this.parentElement.classList.add('eye-photo--fallback');this.remove();}"
         />
-        <!-- Vector fallback eye (used if image fails) -->
+        <!-- Vector fallback eye (used if both image sources fail) -->
         <svg class="eye-photo__fallback" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
           <use href="#eagle-eye"/>
         </svg>

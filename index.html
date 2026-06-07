@@ -1,378 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Social Eagle — About</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Soul Records — Kritika Khurana | Akashic Records 1:1 Programme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --black:#070605;
+    --black-2:#0c0a08;
+    --gold:#d4af72;
+    --gold-soft:#e6cda0;
+    --gold-deep:#9c7c45;
+    --cream:#f3ead9;
+    --muted:#8a8175;
+    --serif:'Cormorant Garamond',serif;
+    --display:'Cinzel',serif;
+    --sans:'Jost',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:var(--serif);
+    overflow-x:hidden;
+    cursor:none;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  ::selection{background:rgba(212,175,114,.25);color:var(--cream);}
+
+  #progress{
+    position:fixed;top:0;left:0;height:2px;width:0%;
+    background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-soft));
+    z-index:9999;box-shadow:0 0 12px rgba(212,175,114,.7);
+  }
+
+  .grain{
+    position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+
+  .cur-dot,.cur-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);}
+  .cur-dot{width:6px;height:6px;background:var(--gold);box-shadow:0 0 8px var(--gold);}
+  .cur-ring{width:34px;height:34px;border:1px solid rgba(212,175,114,.5);transition:width .25s,height .25s,border-color .25s,background .25s;}
+  .cur-ring.hover{width:52px;height:52px;border-color:rgba(212,175,114,.9);background:rgba(212,175,114,.06);}
+  @media(hover:none){.cur-dot,.cur-ring{display:none;}body{cursor:auto;}}
+
+  #specks{position:fixed;inset:0;z-index:1;pointer-events:none;}
+
+  #hero{position:relative;height:100vh;width:100%;overflow:hidden;}
+  #mandala-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+  .hero-vignette{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(ellipse at center,transparent 30%,rgba(7,6,5,.55) 75%,var(--black) 100%);}
+  .hero-content{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;}
+  .hero-eyebrow{font-family:var(--display);font-size:13px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;padding-left:.55em;opacity:0;animation:fadeUp 1.6s .3s forwards;}
+  .hero-title{font-family:var(--serif);font-weight:300;font-size:clamp(64px,13vw,180px);line-height:.95;letter-spacing:.01em;color:var(--cream);opacity:0;animation:fadeUp 1.8s .6s forwards;}
+  .hero-title em{font-style:italic;color:var(--gold-soft);}
+  .hero-sub{margin-top:34px;max-width:540px;font-size:clamp(16px,2vw,21px);font-weight:300;color:rgba(243,234,217,.72);font-style:italic;opacity:0;animation:fadeUp 1.8s 1s forwards;}
+  .hero-scroll{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);z-index:3;font-family:var(--display);font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);opacity:0;animation:fadeUp 2s 1.6s forwards;}
+  .hero-scroll span{display:block;width:1px;height:46px;margin:14px auto 0;background:linear-gradient(var(--gold),transparent);animation:pulseLine 2.4s ease-in-out infinite;}
+  @keyframes pulseLine{0%,100%{opacity:.3;transform:scaleY(.6);}50%{opacity:1;transform:scaleY(1);}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+
+  section{position:relative;z-index:2;padding:140px 32px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  .narrow{max-width:760px;margin:0 auto;}
+  .eyebrow{font-family:var(--display);font-size:12px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:30px;}
+  h2{font-family:var(--serif);font-weight:300;font-size:clamp(38px,6vw,68px);line-height:1.05;letter-spacing:.01em;color:var(--cream);}
+  h2 em{font-style:italic;color:var(--gold-soft);}
+  .lead{font-size:clamp(19px,2.4vw,26px);font-weight:300;color:rgba(243,234,217,.82);}
+  p.body{font-size:18px;font-weight:300;color:rgba(243,234,217,.66);margin-top:22px;}
+  .divider{width:90px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:46px auto;}
+
+  .reveal{opacity:0;transform:translateY(48px);transition:opacity 1.3s cubic-bezier(.16,1,.3,1),transform 1.3s cubic-bezier(.16,1,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+  .reveal.d1{transition-delay:.12s;}.reveal.d2{transition-delay:.24s;}.reveal.d3{transition-delay:.36s;}
+
+  #open{text-align:center;padding-top:170px;}
+  #open .lead{max-width:680px;margin:0 auto;font-style:italic;}
+
+  #akashic{text-align:center;}
+  .geo-wrap{position:relative;width:min(420px,82vw);height:min(420px,82vw);margin:60px auto 50px;display:flex;align-items:center;justify-content:center;}
+  .geo-wrap svg{width:100%;height:100%;overflow:visible;}
+  .geo-glow{position:absolute;inset:18%;border-radius:50%;background:radial-gradient(circle,rgba(212,175,114,.22),transparent 65%);filter:blur(18px);animation:breathe 6s ease-in-out infinite;}
+  @keyframes breathe{0%,100%{opacity:.45;transform:scale(.92);}50%{opacity:.9;transform:scale(1.04);}}
+  .geo-rot{transform-origin:center;animation:spin 120s linear infinite;}
+  .geo-rot-rev{transform-origin:center;animation:spin 90s linear infinite reverse;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .geo-stroke{fill:none;stroke:var(--gold);stroke-width:.6;opacity:.5;}
+  .geo-stroke-2{fill:none;stroke:var(--gold-soft);stroke-width:.4;opacity:.32;}
+
+  #curriculum{background:linear-gradient(180deg,var(--black),var(--black-2),var(--black));}
+  .days{margin-top:70px;display:flex;flex-direction:column;gap:0;}
+  .day{display:grid;grid-template-columns:140px 1fr;gap:40px;padding:46px 0;border-top:1px solid rgba(212,175,114,.14);align-items:start;}
+  .day:last-child{border-bottom:1px solid rgba(212,175,114,.14);}
+  .day-num{font-family:var(--display);font-size:14px;letter-spacing:.3em;color:var(--gold);}
+  .day-num .big{display:block;font-family:var(--serif);font-size:74px;line-height:.9;font-weight:300;color:rgba(212,175,114,.35);margin-top:10px;}
+  .day h3{font-family:var(--serif);font-weight:400;font-size:30px;color:var(--cream);margin-bottom:14px;}
+  .day p{font-size:17px;font-weight:300;color:rgba(243,234,217,.62);}
+
+  .cards{margin-top:64px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .card{position:relative;padding:42px 38px;border:1px solid rgba(212,175,114,.16);background:linear-gradient(160deg,rgba(212,175,114,.04),transparent);transition:border-color .5s,transform .5s,background .5s;}
+  .card:hover{border-color:rgba(212,175,114,.4);transform:translateY(-4px);background:linear-gradient(160deg,rgba(212,175,114,.08),transparent);}
+  .card h4{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .card p{font-size:17px;font-weight:300;color:rgba(243,234,217,.7);}
+  .format-list{margin-top:60px;display:grid;grid-template-columns:repeat(3,1fr);gap:36px;text-align:center;}
+  .format-item .ic{font-family:var(--serif);font-size:40px;color:var(--gold-soft);font-style:italic;}
+  .format-item h4{font-family:var(--display);font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin:18px 0 10px;}
+  .format-item p{font-size:16px;font-weight:300;color:rgba(243,234,217,.6);}
+
+  #testimonials{text-align:center;background:linear-gradient(180deg,var(--black),var(--black-2));}
+  .quotes{margin-top:64px;display:grid;grid-template-columns:repeat(2,1fr);gap:40px;}
+  .quote{padding:50px 44px;border:1px solid rgba(212,175,114,.14);position:relative;background:rgba(255,255,255,.012);}
+  .quote::before{content:'\201C';position:absolute;top:6px;left:24px;font-family:var(--serif);font-size:90px;color:rgba(212,175,114,.22);line-height:1;}
+  .quote p{font-size:20px;font-weight:300;font-style:italic;color:rgba(243,234,217,.82);line-height:1.55;}
+  .quote .by{margin-top:26px;font-family:var(--display);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
+
+  #investment{text-align:center;}
+  .invest-card{position:relative;max-width:560px;margin:64px auto 0;padding:70px 50px;background:linear-gradient(160deg,rgba(212,175,114,.07),rgba(7,6,5,.4));border:1px solid rgba(212,175,114,.3);box-shadow:0 0 60px rgba(212,175,114,.08),inset 0 0 50px rgba(212,175,114,.04);overflow:hidden;}
+  .invest-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(212,175,114,.12),transparent 60%);pointer-events:none;}
+  .corner{position:absolute;width:28px;height:28px;border:1px solid var(--gold);opacity:.7;}
+  .corner.tl{top:16px;left:16px;border-right:none;border-bottom:none;}
+  .corner.tr{top:16px;right:16px;border-left:none;border-bottom:none;}
+  .corner.bl{bottom:16px;left:16px;border-right:none;border-top:none;}
+  .corner.br{bottom:16px;right:16px;border-left:none;border-top:none;}
+  .invest-label{font-family:var(--display);font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);}
+  .invest-old{margin-top:30px;font-size:22px;font-weight:300;color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(212,175,114,.5);}
+  .invest-price{font-family:var(--serif);font-weight:300;font-size:clamp(56px,11vw,90px);line-height:1;color:var(--cream);margin:8px 0 6px;letter-spacing:.01em;}
+  .invest-price em{font-style:normal;color:var(--gold-soft);}
+  .invest-note{font-size:16px;font-weight:300;font-style:italic;color:rgba(243,234,217,.6);margin-top:8px;}
+  .cta{display:inline-block;margin-top:42px;padding:18px 54px;font-family:var(--display);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--black);background:linear-gradient(120deg,var(--gold-deep),var(--gold),var(--gold-soft));border:none;text-decoration:none;transition:transform .4s,box-shadow .4s;box-shadow:0 0 24px rgba(212,175,114,.25);}
+  .cta:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(212,175,114,.45);}
+  .cta.outline{background:transparent;color:var(--gold);border:1px solid rgba(212,175,114,.5);box-shadow:none;}
+  .cta.outline:hover{background:rgba(212,175,114,.08);box-shadow:0 0 30px rgba(212,175,114,.15);}
+
+  #final{text-align:center;padding:170px 32px;background:radial-gradient(ellipse at center,rgba(212,175,114,.06),transparent 70%),var(--black);}
+  #final h2{margin-bottom:24px;}
+
+  footer{position:relative;z-index:2;text-align:center;padding:60px 32px;border-top:1px solid rgba(212,175,114,.1);}
+  footer .name{font-family:var(--display);font-size:13px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);}
+  footer p{font-size:14px;font-weight:300;color:var(--muted);margin-top:14px;}
+
+  @media(max-width:768px){
+    section{padding:90px 22px;}
+    .day{grid-template-columns:1fr;gap:14px;padding:36px 0;}
+    .day-num .big{font-size:54px;}
+    .cards,.quotes{grid-template-columns:1fr;}
+    .format-list{grid-template-columns:1fr;gap:48px;}
+    .invest-card{padding:54px 28px;}
+    .card,.quote{padding:36px 28px;}
+    .hero-eyebrow{letter-spacing:.4em;}
+  }
+</style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav__inner">
-      <a href="#" class="nav__logo">Social Eagle</a>
-      <ul class="nav__links">
-        <li><a href="#leadership">Leadership</a></li>
-        <li><a href="#recognition">Media & Recognition</a></li>
-        <li><a href="#philosophy">Our Philosophy</a></li>
-      </ul>
+<div id="progress"></div>
+<div class="grain"></div>
+<div class="cur-dot"></div>
+<div class="cur-ring"></div>
+<canvas id="specks"></canvas>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <canvas id="mandala-canvas"></canvas>
+  <div class="hero-vignette"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Kritika Khurana</div>
+    <h1 class="hero-title">Soul <em>Records</em></h1>
+    <p class="hero-sub">A four-day, one-to-one passage into the Akashic Records — the living library of your soul.</p>
+  </div>
+  <div class="hero-scroll">Enter<span></span></div>
+</section>
+
+<!-- ===================== OPEN STATEMENT ===================== -->
+<section id="open">
+  <div class="narrow">
+    <div class="eyebrow reveal">The Threshold</div>
+    <p class="lead reveal d1">Before you were named, before you arrived, your story was already written in light. There is a record of every life your soul has lived — and it has been waiting, patiently, for you to remember how to read it.</p>
+    <div class="divider reveal d2"></div>
+    <p class="body reveal d2" style="text-align:center;max-width:600px;margin-left:auto;margin-right:auto;">This is not a course about belief. It is an invitation to come home to a knowing that has always been yours.</p>
+  </div>
+</section>
+
+<!-- ===================== AKASHIC ===================== -->
+<section id="akashic">
+  <div class="wrap">
+    <div class="eyebrow reveal">What Are The Akashic Records</div>
+    <h2 class="reveal d1">The library of <em>the soul</em></h2>
+
+    <div class="geo-wrap reveal d2">
+      <div class="geo-glow"></div>
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <g class="geo-rot">
+          <circle class="geo-stroke" cx="100" cy="100" r="26"/>
+          <g id="ring1"></g>
+          <g id="ring2"></g>
+        </g>
+        <g class="geo-rot-rev">
+          <polygon class="geo-stroke-2" points="100,30 160,135 40,135"/>
+          <polygon class="geo-stroke-2" points="100,170 40,65 160,65"/>
+        </g>
+        <circle class="geo-stroke" cx="100" cy="100" r="78"/>
+        <circle class="geo-stroke-2" cx="100" cy="100" r="88"/>
+      </svg>
     </div>
-  </nav>
 
-  <main>
+    <p class="lead narrow reveal d2">The Akashic Records are an energetic archive — a field that holds the imprint of every soul's journey across time. Past, present, and the unfolding of what may yet be.</p>
+    <p class="body narrow reveal d3">To open them is to access guidance with extraordinary clarity: the patterns you keep repeating, the gifts you carry, the contracts you are ready to release. In <em>Soul Records</em>, you will learn to enter this field yourself — gently, ethically, and with reverence.</p>
+  </div>
+</section>
 
-    <!-- ──────────────────────────────────────────
-         SECTION: Leadership
-    ─────────────────────────────────────────── -->
-    <section class="section section--hero" id="leadership">
-      <div class="container">
-        <span class="eyebrow">About → Leadership</span>
-        <h1 class="section__title">Leadership at Social Eagle</h1>
-        <p class="section__lead">
-          Social Eagle is led by a small group of people responsible for direction, learning
-          quality, delivery discipline, and long-term integrity of the ecosystem.
-        </p>
-        <p class="section__body">
-          Leadership here is not about visibility. It is about stewardship — of systems,
-          standards, and outcomes.
-        </p>
-        <p class="section__body">
-          We intentionally keep leadership lean so the institution remains
-          <strong>system-driven, not personality-driven.</strong>
-        </p>
+<!-- ===================== CURRICULUM ===================== -->
+<section id="curriculum">
+  <div class="wrap">
+    <div class="eyebrow reveal">The Passage · Four Days</div>
+    <h2 class="reveal d1">Your <em>unfolding</em></h2>
+    <div class="days">
+      <div class="day reveal">
+        <div class="day-num">Day<span class="big">I</span></div>
+        <div><h3>Opening the Gate</h3><p>We begin with grounding, energetic protection, and the sacred prayer that opens your own Records. You will feel the field for the first time — and learn to trust the subtle language it speaks in.</p></div>
       </div>
-    </section>
-
-    <!-- Leadership Team -->
-    <section class="section section--team" id="team">
-      <div class="container">
-        <h2 class="section__subtitle">Leadership Team</h2>
-
-        <div class="team-grid">
-
-          <!-- Card 1 -->
-          <article class="card">
-            <div class="card__header">
-              <h3 class="card__name">Dharaneetharan G.D.</h3>
-              <span class="card__role">Founder &amp; Ecosystem Lead</span>
-            </div>
-            <p class="card__desc">
-              Responsible for overall vision, philosophy, and long-term direction of Social Eagle.
-              Ensures that learning, community, experiences, and practice function as one cohesive
-              ecosystem.
-            </p>
-            <p class="card__focus">
-              <span class="label">Focus:</span> Institution-building, clarity of thought, and
-              capability-led growth.
-            </p>
-            <a class="card__link"
-               href="https://www.linkedin.com/in/dharaneetharan/"
-               target="_blank" rel="noopener noreferrer">
-              LinkedIn →
-            </a>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="card">
-            <div class="card__header">
-              <h3 class="card__name">Vishnu Hari Harikumar</h3>
-              <span class="card__role">Head of Programs &amp; Learning</span>
-            </div>
-            <p class="card__desc">
-              Leads the design, structure, and quality of learning experiences across Social Eagle.
-              Ensures programs remain practical, applied, and aligned with real-world outcomes.
-            </p>
-            <p class="card__focus">
-              <span class="label">Focus:</span> Curriculum depth, cohort experience, and learning
-              integrity.
-            </p>
-            <a class="card__link"
-               href="https://www.linkedin.com/in/vishnuhari-harikumar/"
-               target="_blank" rel="noopener noreferrer">
-              LinkedIn →
-            </a>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="card">
-            <div class="card__header">
-              <h3 class="card__name">Shatheesh Ram Ganapathy</h3>
-              <span class="card__role">Community &amp; Operations Lead</span>
-            </div>
-            <p class="card__desc">
-              Oversees community structure, internal operations, and execution discipline across the
-              ecosystem. Ensures consistency, continuity, and reliability in day-to-day functioning.
-            </p>
-            <p class="card__focus">
-              <span class="label">Focus:</span> Operational systems, community health, and delivery
-              consistency.
-            </p>
-            <a class="card__link"
-               href="https://www.linkedin.com/in/shatheeshramganapathy/"
-               target="_blank" rel="noopener noreferrer">
-              LinkedIn →
-            </a>
-          </article>
-
-          <!-- Card 4 -->
-          <article class="card">
-            <div class="card__header">
-              <h3 class="card__name">Sathish</h3>
-              <span class="card__role">Technology &amp; Systems Lead</span>
-            </div>
-            <p class="card__desc">
-              Responsible for technology infrastructure and internal systems that support learning,
-              community, and scale.
-            </p>
-            <p class="card__focus">
-              <span class="label">Focus:</span> System stability, scalability, and technical
-              reliability.
-            </p>
-            <a class="card__link"
-               href="https://www.linkedin.com/in/sathish-se/"
-               target="_blank" rel="noopener noreferrer">
-              LinkedIn →
-            </a>
-          </article>
-
-          <!-- Card 5 -->
-          <article class="card">
-            <div class="card__header">
-              <h3 class="card__name">Thirumurugan R</h3>
-              <span class="card__role">Business &amp; Delivery Lead</span>
-            </div>
-            <p class="card__desc">
-              Oversees business execution, delivery quality, and outcome reliability across programs
-              and engagements. Works closely with learning, operations, and systems teams to
-              translate intent into consistent execution.
-            </p>
-            <p class="card__focus">
-              <span class="label">Focus:</span> Delivery discipline, operational alignment, and
-              execution outcomes.
-            </p>
-            <a class="card__link"
-               href="https://www.linkedin.com/in/thirumurugan-r-85a41b24a/"
-               target="_blank" rel="noopener noreferrer">
-              LinkedIn →
-            </a>
-          </article>
-
-        </div><!-- /team-grid -->
+      <div class="day reveal">
+        <div class="day-num">Day<span class="big">II</span></div>
+        <div><h3>Reading the Light</h3><p>Deepening your access. Working with the Lords, Masters, Teachers and Loved Ones who hold your Records, you'll practice asking, listening, and receiving with precision and discernment.</p></div>
       </div>
-    </section>
-
-    <!-- How Leadership Works -->
-    <section class="section section--how">
-      <div class="container container--narrow">
-        <h2 class="section__subtitle">How leadership works at Social Eagle</h2>
-        <p class="section__body">
-          The goal is not to centralise authority — it is to build an ecosystem that works
-          reliably at scale.
-        </p>
-
-        <ul class="principle-list">
-          <li>Leadership sets direction, not dependency</li>
-          <li>Systems guide execution, not personalities</li>
-          <li>Accountability is explicit and distributed</li>
-          <li>Standards are protected consistently</li>
-          <li>The work matters more than titles</li>
-          <li>Systems matter more than faces</li>
-          <li>Consistency matters more than spotlight</li>
-        </ul>
-
-        <div class="note">
-          <h3 class="note__title">A note on visibility</h3>
-          <p>
-            Social Eagle does not publicly showcase its full team. We believe leadership is visible
-            because direction matters. Everything else is designed to function through structure.
-          </p>
-        </div>
+      <div class="day reveal">
+        <div class="day-num">Day<span class="big">III</span></div>
+        <div><h3>Healing the Threads</h3><p>Here we work with soul contracts, ancestral imprints, and recurring patterns — clearing what no longer serves so your present life can move with freedom and grace.</p></div>
       </div>
-    </section>
-
-    <!-- ──────────────────────────────────────────
-         SECTION: Media & Recognition
-    ─────────────────────────────────────────── -->
-    <section class="section section--recognition" id="recognition">
-      <div class="container container--narrow">
-        <span class="eyebrow">About → Media &amp; Recognition</span>
-        <h2 class="section__title">Media &amp; Recognition at Social Eagle</h2>
-        <p class="section__body">
-          Social Eagle's work has been recognised by industry bodies, institutions, and media
-          platforms over the years.
-        </p>
-
-        <h3 class="section__subtitle">Selected Recognitions</h3>
-
-        <ul class="recognition-list">
-          <li>
-            <span class="recog__year">2026</span>
-            <div>
-              <strong>Startup Stars — Vikatan</strong>
-              <p>Featured as part of the "Startup Stars" series, with the Social Eagle journey
-              included in the accompanying book.</p>
-            </div>
-          </li>
-          <li>
-            <span class="recog__year">2026</span>
-            <div>
-              <strong>Pioneer of Change Award — Entrepreneur</strong>
-            </div>
-          </li>
-          <li>
-            <span class="recog__year">2025</span>
-            <div>
-              <strong>Patrician Legacy Award</strong>
-              <p>For excellence in Digital Marketing.</p>
-            </div>
-          </li>
-          <li>
-            <span class="recog__year">2025</span>
-            <div>
-              <strong>National Life Empowerment Award — SYPA</strong>
-            </div>
-          </li>
-          <li>
-            <span class="recog__year">2023</span>
-            <div>
-              <strong>Silicon India Startup Award — Silicon India</strong>
-              <p>Recognised among the Top 10 Best Social Media Startups.</p>
-            </div>
-          </li>
-          <li>
-            <span class="recog__year">2022</span>
-            <div>
-              <strong>Power Seminar Contributor Award — ICT Academy of Tamil Nadu</strong>
-              <p>For impact and contribution to learning and capability-building.</p>
-            </div>
-          </li>
-          <li>
-            <span class="recog__year">2021</span>
-            <div>
-              <strong>Leader in Me Recognition — Franklin Covey</strong>
-            </div>
-          </li>
-          <li>
-            <span class="recog__year">—</span>
-            <div>
-              <strong>Asia Book Awards</strong>
-            </div>
-          </li>
-        </ul>
-
-        <div class="note">
-          <h3 class="note__title">A note on recognition</h3>
-          <p>
-            While recognition is not our focus, we document it as external validation of the work
-            we continue to do — quietly and consistently. Our priority remains building real-world
-            capability through education, community, and practice.
-          </p>
-        </div>
+      <div class="day reveal">
+        <div class="day-num">Day<span class="big">IV</span></div>
+        <div><h3>Walking Forward</h3><p>Integration and embodiment. You'll establish your own ongoing practice and receive a personal reading on the path ahead — leaving as a steward of your own sacred record.</p></div>
       </div>
-    </section>
-
-    <!-- ──────────────────────────────────────────
-         SECTION: Our Philosophy
-    ─────────────────────────────────────────── -->
-    <section class="section section--philosophy" id="philosophy">
-      <div class="container container--narrow">
-        <span class="eyebrow">Our Philosophy</span>
-        <h2 class="section__title">How Social Eagle Thinks, Teaches, and Operates</h2>
-        <p class="section__lead">
-          Social Eagle is built on the belief that real growth comes from responsibility,
-          practice, and integrity — not motivation or shortcuts.
-        </p>
-        <p class="section__body">
-          Everything we do, from education to community to experiences, is designed to help
-          people operate effectively in the real world.
-        </p>
-
-        <h3 class="section__subtitle">Our Core Principles</h3>
-
-        <div class="principles">
-
-          <div class="principle">
-            <div class="principle__number">01</div>
-            <div class="principle__content">
-              <h4>Responsibility Comes First</h4>
-              <p>Growth begins with ownership. We believe individuals grow only when they take
-              responsibility for their learning, their decisions, and their outcomes.</p>
-              <p>We do not believe in excuses — only feedback and improvement.</p>
-            </div>
-          </div>
-
-          <div class="principle">
-            <div class="principle__number">02</div>
-            <div class="principle__content">
-              <h4>Integrity Is Non-Negotiable</h4>
-              <p>Trust is the foundation of any ecosystem. We operate with honesty in intent,
-              clarity in communication, and consistency in action.</p>
-              <p>We choose what is right over what is easy.</p>
-            </div>
-          </div>
-
-          <div class="principle">
-            <div class="principle__number">03</div>
-            <div class="principle__content">
-              <h4>Learning Must Lead to Action</h4>
-              <p>Knowledge without application is incomplete. At Social Eagle, learning is
-              designed to be applied, progress is measured through action, and practice is built
-              into every serious path.</p>
-              <p>We don't teach for understanding alone — we teach for execution.</p>
-            </div>
-          </div>
-
-          <div class="principle">
-            <div class="principle__number">04</div>
-            <div class="principle__content">
-              <h4>Systems Enable Consistency</h4>
-              <p>Individuals perform better within strong systems. Clear processes reduce chaos,
-              discipline creates freedom, and consistency compounds results.</p>
-              <p>We build environments where people can rely on systems, not heroics.</p>
-            </div>
-          </div>
-
-          <div class="principle">
-            <div class="principle__number">05</div>
-            <div class="principle__content">
-              <h4>Customer and Learner Success Is the Real Outcome</h4>
-              <p>Our work exists only because it serves real people. We design everything with a
-              single question: <em>Does this help someone succeed in the real world?</em></p>
-              <p>If it doesn't, it doesn't belong here.</p>
-            </div>
-          </div>
-
-          <div class="principle">
-            <div class="principle__number">06</div>
-            <div class="principle__content">
-              <h4>Growth Is Continuous, Not Event-Based</h4>
-              <p>Growth is not a milestone. It is a habit. We encourage continuous learning.</p>
-              <p>Stagnation is the only failure.</p>
-            </div>
-          </div>
-
-          <div class="principle">
-            <div class="principle__number">07</div>
-            <div class="principle__content">
-              <h4>We Grow Together</h4>
-              <p>Individual growth is strengthened by collective progress. Social Eagle is built
-              on the belief that progress is faster — and more sustainable — when people grow
-              together.</p>
-            </div>
-          </div>
-
-        </div><!-- /principles -->
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 Social Eagle. All rights reserved.</p>
     </div>
-  </footer>
+  </div>
+</section>
 
+<!-- ===================== FOR WHO ===================== -->
+<section id="forwho">
+  <div class="wrap">
+    <div class="eyebrow reveal">For Whom This Is</div>
+    <h2 class="reveal d1">A calling, not <em>a curiosity</em></h2>
+    <div class="cards">
+      <div class="card reveal"><h4>The Seeker</h4><p>You feel a pull toward something deeper and are ready to move from reading about the spiritual to living it directly.</p></div>
+      <div class="card reveal d1"><h4>The Healer</h4><p>You hold space for others and wish to add the Akashic Records as a profound tool within your own practice.</p></div>
+      <div class="card reveal d2"><h4>At a Threshold</h4><p>You stand at a crossroads — a relationship, a vocation, a version of yourself dissolving — and want clarity from the source.</p></div>
+      <div class="card reveal d3"><h4>The Remembering</h4><p>Something in you already knows. You are simply ready to be given the keys to a door you have always sensed.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FORMAT ===================== -->
+<section id="format">
+  <div class="wrap" style="text-align:center;">
+    <div class="eyebrow reveal">The Container</div>
+    <h2 class="reveal d1">Held in <em>devotion</em></h2>
+    <div class="format-list">
+      <div class="format-item reveal"><div class="ic">i</div><h4>Private 1:1</h4><p>Entirely personal. No group, no recordings of others — only you, your field, and Kritika's full attention.</p></div>
+      <div class="format-item reveal d1"><div class="ic">iv</div><h4>Four Days</h4><p>Spacious sessions across four days, paced to your nervous system and your unfolding.</p></div>
+      <div class="format-item reveal d2"><div class="ic">&#8734;</div><h4>Lifelong Practice</h4><p>You leave with a complete, repeatable method — yours to return to for the rest of your life.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="eyebrow reveal">In Their Words</div>
+    <h2 class="reveal d1">Voices from <em>the field</em></h2>
+    <div class="quotes">
+      <div class="quote reveal"><p>I came searching for answers and left with a way of listening that has never left me. Something in me finally settled.</p><div class="by">— A Soul Records Graduate</div></div>
+      <div class="quote reveal d1"><p>Kritika holds space with such tenderness and precision. By the fourth day I was reading my own Records with a clarity I didn't think possible.</p><div class="by">— A Devoted Seeker</div></div>
+      <div class="quote reveal d1"><p>This was not a course. It was a remembering. I understand my life — every pattern, every choice — completely differently now.</p><div class="by">— A Practitioner &amp; Healer</div></div>
+      <div class="quote reveal"><p>The most sacred four days of my year. I arrived heavy and left luminous, carrying a practice that is entirely my own.</p><div class="by">— A Returning Student</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INVESTMENT ===================== -->
+<section id="investment">
+  <div class="wrap">
+    <div class="eyebrow reveal">The Investment</div>
+    <h2 class="reveal d1">A sacred <em>exchange</em></h2>
+    <div class="invest-card reveal d2">
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <div class="invest-label">Soul Records · Complete Programme</div>
+      <div class="invest-old">Rs. 1,00,000</div>
+      <div class="invest-price"><em>Rs.</em> 35,000</div>
+      <div class="invest-note">Four private days · A lifelong practice · Limited to a few souls each season</div>
+      <a href="#final" class="cta" data-hover>Reserve Your Passage</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section id="final">
+  <div class="narrow">
+    <div class="eyebrow reveal">The Door Is Open</div>
+    <h2 class="reveal d1">Your soul has been<br><em>waiting to be read</em></h2>
+    <p class="body reveal d2" style="max-width:540px;margin:24px auto 0;">When you are ready, reach out. A short conversation with Kritika will reveal whether this passage is meant for you, now.</p>
+    <div class="reveal d3" style="margin-top:46px;">
+      <a href="mailto:hello@kritikakhurana.com?subject=Soul%20Records%20Enquiry" class="cta" data-hover>Begin the Conversation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="name">Kritika Khurana</div>
+  <p>Soul Records — Akashic Records 1:1 Programme</p>
+  <p style="opacity:.6;">© 2026 · Crafted with reverence</p>
+</footer>
+
+<script>
+/* ---------------- Custom cursor ---------------- */
+(function(){
+  const dot=document.querySelector('.cur-dot'),ring=document.querySelector('.cur-ring');
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button,[data-hover]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
+  });
+})();
+
+/* ---------------- Flower-of-life SVG rings ---------------- */
+(function(){
+  const r=26,cx=100,cy=100;
+  const make=(g,radius)=>{
+    for(let i=0;i<6;i++){
+      const a=Math.PI/3*i;
+      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',cx+Math.cos(a)*radius);
+      c.setAttribute('cy',cy+Math.sin(a)*radius);
+      c.setAttribute('r',r);c.setAttribute('class','geo-stroke');
+      g.appendChild(c);
+    }
+  };
+  make(document.getElementById('ring1'),r);
+  make(document.getElementById('ring2'),r*2);
+})();
+
+/* ---------------- Scroll progress ---------------- */
+const prog=document.getElementById('progress');
+function onScroll(){
+  const h=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(scrollY/h*100)+'%';
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---------------- IntersectionObserver reveals ---------------- */
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.18});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------------- Rising gold specks ---------------- */
+(function(){
+  const cv=document.getElementById('specks'),ctx=cv.getContext('2d');
+  let w,h,specks=[];
+  function size(){w=cv.width=innerWidth;h=cv.height=innerHeight;}
+  size();addEventListener('resize',size);
+  for(let i=0;i<60;i++){
+    specks.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.6+.4,s:Math.random()*.4+.15,o:Math.random()*.5+.2,t:Math.random()*100});
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    specks.forEach(p=>{
+      p.y-=p.s;p.t+=.02;
+      if(p.y<-5){p.y=h+5;p.x=Math.random()*w;}
+      const tw=p.o*(.6+.4*Math.sin(p.t));
+      ctx.beginPath();ctx.arc(p.x+Math.sin(p.t)*8,p.y,p.r,0,7);
+      ctx.fillStyle='rgba(212,175,114,'+tw+')';ctx.shadowBlur=6;ctx.shadowColor='rgba(212,175,114,.6)';ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ---------------- HERO Canvas: rotating golden mandala + fog ---------------- */
+(function(){
+  const cv=document.getElementById('mandala-canvas'),ctx=cv.getContext('2d');
+  let w,h,cx,cy,dpr=Math.min(devicePixelRatio||1,2);
+  function size(){
+    w=cv.clientWidth;h=cv.clientHeight;
+    cv.width=w*dpr;cv.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    cx=w/2;cy=h/2;
+  }
+  size();addEventListener('resize',size);
+
+  const fog=[];
+  for(let i=0;i<6;i++)fog.push({x:Math.random()*w,y:Math.random()*h,r:200+Math.random()*220,a:Math.random()*Math.PI*2,sp:.0006+Math.random()*.0008});
+
+  const parts=[];
+  for(let i=0;i<90;i++)parts.push({a:Math.random()*Math.PI*2,d:Math.random()*Math.min(w,h)*.55,sp:(Math.random()*.0008+.0002)*(Math.random()<.5?1:-1),r:Math.random()*1.4+.3,o:Math.random()*.6+.2,t:Math.random()*100});
+
+  let rot=0,scrollT=0;
+  addEventListener('scroll',()=>{scrollT=Math.min(1,scrollY/innerHeight);},{passive:true});
+
+  function petalLayer(radius,count,len,width,phase,alpha){
+    ctx.save();ctx.rotate(phase);
+    for(let i=0;i<count;i++){
+      const a=(Math.PI*2/count)*i;
+      ctx.save();ctx.rotate(a);
+      ctx.beginPath();
+      ctx.moveTo(0,radius);
+      ctx.quadraticCurveTo(width,radius+len*.5,0,radius+len);
+      ctx.quadraticCurveTo(-width,radius+len*.5,0,radius);
+      ctx.strokeStyle='rgba(212,175,114,'+alpha+')';
+      ctx.lineWidth=.8;ctx.stroke();
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+
+    fog.forEach(f=>{
+      f.a+=f.sp;
+      const fx=f.x+Math.cos(f.a)*60,fy=f.y+Math.sin(f.a)*60;
+      const g=ctx.createRadialGradient(fx,fy,0,fx,fy,f.r);
+      g.addColorStop(0,'rgba(60,46,24,0.10)');
+      g.addColorStop(1,'rgba(7,6,5,0)');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(fx,fy,f.r,0,7);ctx.fill();
+    });
+
+    const scale=1+scrollT*2.4;
+    const fade=1-scrollT*0.9;
+
+    ctx.save();
+    ctx.translate(cx,cy);
+    ctx.scale(scale,scale);
+    rot+=0.0012;
+    ctx.globalAlpha=Math.max(0,fade);
+
+    const base=Math.min(w,h);
+
+    const cg=ctx.createRadialGradient(0,0,0,0,0,base*.36);
+    cg.addColorStop(0,'rgba(230,205,160,0.30)');
+    cg.addColorStop(.4,'rgba(212,175,114,0.10)');
+    cg.addColorStop(1,'rgba(212,175,114,0)');
+    ctx.fillStyle=cg;ctx.beginPath();ctx.arc(0,0,base*.36,0,7);ctx.fill();
+
+    ctx.save();
+    ctx.rotate(rot);
+    for(let i=1;i<=4;i++){
+      ctx.beginPath();ctx.arc(0,0,base*.06*i,0,7);
+      ctx.strokeStyle='rgba(212,175,114,'+(0.18+0.04*i)+')';ctx.lineWidth=.7;ctx.stroke();
+    }
+    petalLayer(base*.10,12,base*.05,base*.02,0,.45);
+    petalLayer(base*.17,18,base*.06,base*.018,rot*.5,.32);
+    petalLayer(base*.26,24,base*.07,base*.016,-rot*.7,.24);
+
+    ctx.save();
+    for(let i=0;i<48;i++){
+      ctx.rotate(Math.PI*2/48);
+      ctx.beginPath();ctx.moveTo(0,base*.30);ctx.lineTo(0,base*.34);
+      ctx.strokeStyle='rgba(212,175,114,0.18)';ctx.lineWidth=.5;ctx.stroke();
+    }
+    ctx.restore();
+
+    ctx.save();ctx.rotate(-rot*1.6);
+    ctx.beginPath();
+    for(let i=0;i<6;i++){
+      const a=Math.PI/3*i,x=Math.cos(a)*base*.05,y=Math.sin(a)*base*.05;
+      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+    }
+    ctx.closePath();ctx.strokeStyle='rgba(230,205,160,0.5)';ctx.lineWidth=.8;ctx.stroke();
+    ctx.restore();
+
+    ctx.restore();
+    ctx.restore();
+
+    ctx.save();ctx.translate(cx,cy);
+    parts.forEach(p=>{
+      p.a+=p.sp;p.t+=.02;
+      const x=Math.cos(p.a)*p.d,y=Math.sin(p.a)*p.d;
+      const tw=p.o*(.55+.45*Math.sin(p.t))*Math.max(0,fade);
+      ctx.beginPath();ctx.arc(x,y,p.r,0,7);
+      ctx.fillStyle='rgba(212,175,114,'+tw+')';
+      ctx.shadowBlur=8;ctx.shadowColor='rgba(212,175,114,.8)';ctx.fill();
+    });
+    ctx.restore();
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
 </body>
 </html>
